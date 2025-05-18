@@ -5,7 +5,6 @@
 
 # run 'aws sso login' then './fun-with-the-bible.py
 
-#!/usr/bin/env python3
 
 import os
 import boto3
