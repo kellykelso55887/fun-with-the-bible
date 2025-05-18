@@ -1,5 +1,10 @@
 #!/usr/bin/env python3
 
+# this file counts the words in the chapters of the bible 
+# in s3 buckets and pushes the summary to Github
+
+# run 'aws sso login' then './fun-with-the-bible.py
+
 import os
 import boto3
 import pandas as pd
