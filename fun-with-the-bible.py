@@ -20,11 +20,14 @@ for page in page_iterator:                                                  # lo
    contents = page.get('Contents', [])
    for obj in contents:
        key = obj['Key']
-       if key.endswith('.txt'):
+       if key.endswith('.txt'):      
            text = s3.get_object(Bucket=BUCKET, Key=key)['Body'].read().decode('utf-8')
            word_count = len(text.split())
            summary.append({'chapter': key, 'word_count': word_count})
            print(key, word_count)
+
+
+
 summary_df = pd.DataFrame(summary)
 
 # create the chapters word count file
