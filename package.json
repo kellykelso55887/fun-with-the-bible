@@ -1,0 +1,24 @@
+{
+  "name": "fun-with-the-bible",
+  "version": "1.0.0",
+  "description": "Playing around with the text of the bible",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://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@github.com/kellykelso55887/fun-with-the-bible.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kellykelso55887/fun-with-the-bible/issues"
+  },
+  "homepage": "https://github.com/kellykelso55887/fun-with-the-bible#readme",
+  "devDependencies": {
+    "@tailwindcss/cli": "^4.1.7",
+    "tailwindcss": "^4.1.7"
+  }
+}

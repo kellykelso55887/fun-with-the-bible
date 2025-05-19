@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Text Search</title>
+  <link href="{{ url_for('static', path='/css/app.css') }}" rel="stylesheet">
+</head>
+<body class="bg-gray-100 p-6">
+  <div class="max-w-2xl mx-auto">
+    <h1 class="text-2xl font-bold mb-4">Search Text Files</h1>
+    <form id="search-form" class="mb-4">
+      <input id="query" name="q" type="text" placeholder="Enter a word"
+             class="border p-2 w-full" />
+      <button type="submit" class="mt-2 bg-blue-500 text-white px-4 py-2">Search</button>
+    </form>
+    <div id="results" class="space-y-2">
+      <!-- Results will go here -->
+    </div>
+  </div>
+
+  <script>
+  // Use Fetch API to call backend
+  const form = document.getElementById('search-form');
+  const resultsDiv = document.getElementById('results');
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    resultsDiv.innerHTML = '';
+    const q = document.getElementById('query').value;
+    if (!q) return;
+    const res = await fetch(`/search?q=${encodeURIComponent(q)}`);
+    const data = await res.json();
+    if (data.matches.length === 0) {
+      resultsDiv.innerHTML = '<p>No matches found.</p>';
+    } else {
+      data.matches.forEach(item => {
+        const p = document.createElement('p');
+        p.className = 'border rounded p-2 bg-white';
+        p.textContent = item.file + ': ' + item.sentence;
+        resultsDiv.appendChild(p);
+      });
+    }
+  });
+  </script>
+</body>
+</html>
