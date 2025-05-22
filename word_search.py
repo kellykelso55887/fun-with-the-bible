@@ -18,11 +18,10 @@ import traceback
 from dotenv import load_dotenv 
 
 
-load_dotenv()                                   # loads variables from .env
+load_dotenv('/Users/mogsta/fun-with-the-bible/.env')                                   # loads variables from .env
 app         = FastAPI()
 s3          = boto3.client("s3")
 bucket_name = os.getenv("BUCKET")
-
 
 # the following search needs to search synonyms
 @app.get("/search")
@@ -39,7 +38,7 @@ def search_word(q: str):
                     # Fetch object content
                     content = s3.get_object(Bucket=bucket_name, Key=key)["Body"].read().decode("utf-8")
                     # Split into sentences (simple regex)
-                    sentences = re.split(r'(?<=[.!?]) +', content)
+                    sentences = re.split(r'(?<=[.!?])\s+|\n+', content)
                     # Find sentences containing the query (case-sensitive)
                     for sentence in sentences:
                         if q in sentence:
@@ -58,3 +57,10 @@ templates = Jinja2Templates(directory="templates")
 @app.get("/", response_class=HTMLResponse)
 def home(request: Request):
     return templates.TemplateResponse("index.html", {"request": request})
+
+
+
+#####################################################################
+# testing by loading the s3 object locally
+#response = s3.get_object(Bucket=bucket_name, Key="1 Timothy 1.txt")
+#content = response['Body'].read().decode('utf-8')
