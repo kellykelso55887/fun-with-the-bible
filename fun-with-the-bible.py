@@ -2,9 +2,9 @@
 
 # this file counts the words in the chapters of the bible 
 # in s3 buckets and pushes the summary to Github
-# last reviewed on 18 May 2025
+# last reviewed on 23 May 2025
 
-# run 'aws sso login' then './fun-with-the-bible.py
+# run ./fun-with-the-bible.py in myenv
 
 
 import os
