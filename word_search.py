@@ -58,7 +58,9 @@ templates = Jinja2Templates(directory="templates")
 def home(request: Request):
     return templates.TemplateResponse("index.html", {"request": request})
 
-
+@app.get("/health")
+def health_check():
+    return {"status": "OK"}
 
 #####################################################################
 # testing by loading the s3 object locally
