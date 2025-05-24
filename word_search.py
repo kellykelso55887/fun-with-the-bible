@@ -4,7 +4,7 @@
 # in s3 buckets creates a web server to interact with it
 # last reviewed on 18 May 2025
 
-# run 'aws sso login' then './word_search.py
+# run ./word_search.py
 
 import os
 from fastapi import FastAPI, HTTPException, Request

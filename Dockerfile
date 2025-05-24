@@ -16,5 +16,5 @@ RUN pip install -r requirements.txt
 # Copy app code and built CSS
 COPY . .
 # Expose port
-EXPOSE 8000
-CMD ["uvicorn", "word_search:app", "--host", "0.0.0.0", "--port", "8000"]
+EXPOSE 8080
+CMD ["uvicorn", "word_search:app", "--host", "0.0.0.0", "--port", "8080"]
