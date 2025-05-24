@@ -4,7 +4,6 @@
 # in s3 buckets creates a web server to interact with it
 # last reviewed on 18 May 2025
 
-# run ./word_search.py
 
 import os
 from fastapi import FastAPI, HTTPException, Request
@@ -18,7 +17,10 @@ import traceback
 from dotenv import load_dotenv 
 
 
-load_dotenv('/Users/mogsta/fun-with-the-bible/.env')                                   # loads variables from .env
+if os.getenv("AWS_EXECUTION_ENV") is None:
+    # Load .env locally only and not in AWS ElasticBeanstalk
+    load_dotenv('/Users/mogsta/fun-with-the-bible/.env')
+
 app         = FastAPI()
 s3          = boto3.client("s3")
 bucket_name = os.getenv("BUCKET")
